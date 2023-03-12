@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import PhotoContextProvider from "./context/photoContext";
+import {
+  BrowserRouter,
+  HashRouter,
+  Route,
+  Switch,
+  Redirect,
+  Routes,
+  Navigate,
+  Router
+} from "react-router-dom";
+import Header from "./components/Header";
+import NotFound from './components/NotFound'
+import Search from "./components/Search";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  handleSubmit = () => {};
+
+  render() {
+    return (
+      <PhotoContextProvider>
+        <HashRouter basename="/">
+        {/* <div className="container">
+          <Header handleSubmit={this.handleSubmit} history={props.history} />
+        </div> */}
+        {/* <Router basename="/#"> */}
+          <Routes>
+            <Route path="/"
+            element={<Header />}
+              />
+            {/* <Route index path="/" element={<Home />} /> */}
+          </Routes>  
+        {/* </Router> */}
+        </HashRouter>
+      </PhotoContextProvider>
+    );
+  }
 }
+
+// element={props => (
+//   <Header
+//     handleSubmit={this.handleSubmit}
+//     history={props.history}
+//   />
+// )}
 
 export default App;
